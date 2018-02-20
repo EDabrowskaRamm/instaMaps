@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar padding-left>
+      <ion-icon name="search"></ion-icon>
+      <ion-input type="text" placeholder="Search"></ion-input>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-tabs>
+    <ion-tab tabIcon="grid-outline" [root]="searchHash"></ion-tab>
+    <ion-tab tabIcon="navigate" [root]="searchGeoloc"></ion-tab>
+    <!-- <ion-tab tabIcon="analytics" [root]="tab3"></ion-tab>
+    <ion-tab tabIcon="settings" [root]="tab4"></ion-tab> -->
+  </ion-tabs>
+</ion-content>
