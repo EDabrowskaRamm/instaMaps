@@ -40,14 +40,19 @@ export class HomePage {
   ]
 
 
-  onFav() {
-    console.log('favourite')
+  onFav(event) {
+    console.log(event)
     if (this.isActive === "false") {
       this.isActive = "true"
-      // this.likesCount++
+      for (let i = 0; i < this.myPlaces.length; i++) {
+        this.myPlaces[i].likesCount++
+        
+      }
     } else {
       this.isActive = "false"
-      // this.likesCount--      
+      for (let i = 0; i < this.myPlaces.length; i++) {
+        this.myPlaces[i].likesCount--
+      }
     }
   }
 

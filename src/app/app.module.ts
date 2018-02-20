@@ -12,6 +12,8 @@ import { AddPlacePage } from '../pages/add-place/add-place';
 import { SearchPage } from '../pages/search/search';
 import { SearchHashPage } from '../pages/search-hash/search-hash'
 import { SearchGeolocPage } from '../pages/search-geoloc/search-geoloc'
+import { SettingsPage } from '../pages/settings/settings';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { SearchGeolocPage } from '../pages/search-geoloc/search-geoloc'
     AddPlacePage,
     SearchPage,
     SearchHashPage,
-    SearchGeolocPage
+    SearchGeolocPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { SearchGeolocPage } from '../pages/search-geoloc/search-geoloc'
     AddPlacePage,
     SearchPage,
     SearchHashPage,
-    SearchGeolocPage
+    SearchGeolocPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,

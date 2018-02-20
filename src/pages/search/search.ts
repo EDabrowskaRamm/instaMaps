@@ -14,6 +14,8 @@ export class SearchPage {
   searchHash = SearchHashPage
   searchGeoloc = SearchGeolocPage
 
+  placeholder: string = "Search"
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
