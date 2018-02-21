@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { CommentsPage } from '../pages/comments/comments';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddPlacePage } from '../pages/add-place/add-place';
+import { AddGalleryPage } from '../pages/add-gallery/add-gallery';
+import { AddPicturePage } from '../pages/add-picture/add-picture';
 import { SearchPage } from '../pages/search/search';
 import { SearchHashPage } from '../pages/search-hash/search-hash'
 import { SearchGeolocPage } from '../pages/search-geoloc/search-geoloc'
@@ -25,7 +27,10 @@ import { SettingsPage } from '../pages/settings/settings';
     SearchPage,
     SearchHashPage,
     SearchGeolocPage,
-    SettingsPage
+    SettingsPage,
+    AddGalleryPage,
+    AddPicturePage
+    
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,9 @@ import { SettingsPage } from '../pages/settings/settings';
     SearchPage,
     SearchHashPage,
     SearchGeolocPage,
-    SettingsPage
+    SettingsPage,
+    AddGalleryPage,
+    AddPicturePage
   ],
   providers: [
     StatusBar,

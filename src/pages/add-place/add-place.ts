@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the AddPlacePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AddGalleryPage } from '../add-gallery/add-gallery';
+import { AddPicturePage } from '../add-picture/add-picture';
 
 @IonicPage()
 @Component({
@@ -14,6 +10,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'add-place.html',
 })
 export class AddPlacePage {
+
+  addGallery = AddGalleryPage;
+  addPicture = AddPicturePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
