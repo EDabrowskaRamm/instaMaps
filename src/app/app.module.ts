@@ -4,11 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { AgmCoreModule } from '@agm/core';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CommentsPage } from '../pages/comments/comments';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddPlacePage } from '../pages/add-place/add-place';
+import { SetLocationPage } from '../pages/set-location/set-location';
 import { AddGalleryPage } from '../pages/add-gallery/add-gallery';
 import { AddPicturePage } from '../pages/add-picture/add-picture';
 import { SearchPage } from '../pages/search/search';
@@ -29,12 +32,16 @@ import { SettingsPage } from '../pages/settings/settings';
     SearchGeolocPage,
     SettingsPage,
     AddGalleryPage,
-    AddPicturePage
+    AddPicturePage,
+    SetLocationPage
     
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBlLT6teEaUN0mwbj48O4vYwfRhQKudSgE'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,7 +55,8 @@ import { SettingsPage } from '../pages/settings/settings';
     SearchGeolocPage,
     SettingsPage,
     AddGalleryPage,
-    AddPicturePage
+    AddPicturePage,
+    SetLocationPage
   ],
   providers: [
     StatusBar,

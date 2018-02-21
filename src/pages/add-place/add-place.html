@@ -1,21 +1,82 @@
-<ion-content padding>
-  <ion-list>
+<ion-header>
 
-    <ion-item>
-      <ion-label fixed>Username</ion-label>
-      <ion-input type="text" value=""></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label fixed>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-  
-  </ion-list>
-  
-  <ion-tabs selectedIndex="1">
+  <ion-navbar>
+    <ion-title>Add a place</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button block outline type="button" icon-left
+                  (click)="onCamera()">
+            <ion-icon name="camera"></ion-icon>Open camera
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button block outline type="button" icon-left
+                  (click)="onGallery()">
+            <ion-icon name="albums"></ion-icon>Open gallery
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <img [src]="" [alt]="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>Title</ion-label>
+        <ion-input type="text" name="title" ngModel required></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label fixed>Description</ion-label>
+        <ion-textarea type="text" name="description" ngModel required></ion-textarea>
+      </ion-item>
+    
+    </ion-list>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button block outline type="button" icon-left
+                  (click)="onLocate()">
+            <ion-icon name="locate"></ion-icon>Locate me
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button block outline type="button" icon-left
+                  (click)="onMark()">
+            <ion-icon name="map"></ion-icon>Mark on map
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p>Selected place...</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block outline type="submit" icon-left
+            [disabled]="!f.valid">
+      <ion-icon name="share"></ion-icon>Let's share
+    </button>
+
+  </form>
+  <!-- <ion-tabs selectedIndex="1">
     <ion-tab tabTitle="Gallery" [root]="addGallery"></ion-tab>
     <ion-tab tabTitle="Picture" [root]="addPicture"></ion-tab>
-    <!-- <ion-tab tabIcon="analytics" [root]="tab3"></ion-tab>-->
-  </ion-tabs>
+    <ion-tab tabIcon="analytics" [root]="tab3"></ion-tab>
+  </ion-tabs> -->
 </ion-content>
