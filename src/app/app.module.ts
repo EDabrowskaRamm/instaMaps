@@ -11,6 +11,7 @@ import { Camera } from '@ionic-native/camera';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CommentsPage } from '../pages/comments/comments';
+import { PlacePage } from '../pages/place/place';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddPlacePage } from '../pages/add-place/add-place';
 import { SetLocationPage } from '../pages/set-location/set-location';
@@ -37,7 +38,8 @@ import { PlacesService } from '../services/places';
     SettingsPage,
     AddGalleryPage,
     AddPicturePage,
-    SetLocationPage
+    SetLocationPage,
+    PlacePage
     
   ],
   imports: [
@@ -60,7 +62,8 @@ import { PlacesService } from '../services/places';
     SettingsPage,
     AddGalleryPage,
     AddPicturePage,
-    SetLocationPage
+    SetLocationPage,
+    PlacePage
   ],
   providers: [
     StatusBar,

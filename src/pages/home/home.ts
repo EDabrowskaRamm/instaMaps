@@ -3,6 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 
 import { CommentsPage } from '../comments/comments';
 import { Place } from '../../models/place';
+import { PlacePage } from '../place/place';
 
 import { PlacesService } from '../../services/places';
 
@@ -49,9 +50,12 @@ export class HomePage {
     this.navCtrl.push(CommentsPage)
   }
 
-  onMap(item: Place) {
+  onMap(item: Place, index: number) {
     console.log('show map with this place location');
-    // const modal = this.modalCrtl.create();
-    // modal.present();
+    const modal = this.modalCrtl.create(PlacePage, {
+      place: item,
+      index: index
+    });
+    modal.present();
   }
 }

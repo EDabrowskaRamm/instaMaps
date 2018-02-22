@@ -20,7 +20,7 @@
   <p> {{ commentsLength }} comments</p>
   <button ion-button [navPush]="commentsPage" >Click to comment</button> -->
 
-  <ion-card *ngFor="let item of myPlaces; let index = i" >
+  <ion-card *ngFor="let item of myPlaces; let i = index" >
 
     <ion-item>
       <h2> {{ item.title }} </h2>
@@ -46,7 +46,7 @@
         </button>
       </ion-col>
       <ion-col center text-center>
-        <button ion-button icon-left clear small (click)="onMap(item)">
+        <button ion-button icon-left clear small (click)="onMap(item, i)">
           <ion-icon name="map" [isActive]="false"></ion-icon>
           <!-- <div>location</div> -->
         </button>

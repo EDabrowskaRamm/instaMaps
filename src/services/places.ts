@@ -17,4 +17,9 @@ export class PlacesService {
     // return copy of places array
     return this.places.slice();
   }
+
+  // function to remove a place from the array
+  deletePlace(index: number) {
+    this.places.splice(index, 1);
+  }
 }
