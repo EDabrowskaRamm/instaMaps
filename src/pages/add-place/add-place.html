@@ -61,15 +61,18 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="isLocationSet">
         <ion-col>
-          <p>Selected place...</p>
+          <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="16">
+            <agm-marker [latitude]="location.lat" [longitude]="location.lng">
+            </agm-marker>
+          </agm-map>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <button ion-button block outline type="submit" icon-left
-            [disabled]="!f.valid">
+            [disabled]="!f.valid || !isLocationSet">
       <ion-icon name="share"></ion-icon>Let's share
     </button>
 
