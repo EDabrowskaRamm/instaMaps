@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { CommentsPage } from '../comments/comments';
+import { Place } from '../../models/place';
+
+import { PlacesService } from '../../services/places';
 
 @Component({
   selector: 'page-home',
@@ -14,30 +17,16 @@ export class HomePage {
   // commentsLength: number = 3
   isActive: string = "false"
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private placesService: PlacesService,
+              private modalCrtl: ModalController) {
 
   }
 
-  myPlaces = [
-    {
-      img: '../../assets/imgs/map.jpg',
-      locDescription: 'Default location description',
-      likesCount: 0,
-      commentsLength: 3
-    },
-    {
-      img: '../../assets/imgs/map.jpg',
-      locDescription: 'Default location description2',
-      likesCount: 0,
-      commentsLength: 1
-    },
-    {
-      img: '../../assets/imgs/map.jpg',
-      locDescription: 'Default location description3',
-      likesCount: 0,
-      commentsLength: 5
-    }
-  ]
+  myPlaces: Place[] = [ ]
+
+  ionViewWillEnter() {
+    this.myPlaces = this.placesService.loadPlaces();
+  }
 
 
   onFav(event) {
@@ -45,18 +34,24 @@ export class HomePage {
     if (this.isActive === "false") {
       this.isActive = "true"
       for (let i = 0; i < this.myPlaces.length; i++) {
-        this.myPlaces[i].likesCount++
+        // this.myPlaces[i].likesCount++;
         
       }
     } else {
       this.isActive = "false"
       for (let i = 0; i < this.myPlaces.length; i++) {
-        this.myPlaces[i].likesCount--
+        // this.myPlaces[i].likesCount--;
       }
     }
   }
 
   onComment() {
     this.navCtrl.push(CommentsPage)
+  }
+
+  onMap(item: Place) {
+    console.log('show map with this place location');
+    // const modal = this.modalCrtl.create();
+    // modal.present();
   }
 }

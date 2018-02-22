@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -19,6 +20,8 @@ import { SearchPage } from '../pages/search/search';
 import { SearchHashPage } from '../pages/search-hash/search-hash'
 import { SearchGeolocPage } from '../pages/search-geoloc/search-geoloc'
 import { SettingsPage } from '../pages/settings/settings';
+
+import { PlacesService } from '../services/places';
 
 
 @NgModule({
@@ -63,7 +66,9 @@ import { SettingsPage } from '../pages/settings/settings';
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Camera,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PlacesService
   ]
 })
 export class AppModule {}

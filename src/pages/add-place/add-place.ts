@@ -4,11 +4,14 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 import { NgForm } from '@angular/forms';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 // import { AddGalleryPage } from '../add-gallery/add-gallery';
 // import { AddPicturePage } from '../add-picture/add-picture';
 import { SetLocationPage } from '../set-location/set-location';
 import { Location } from '../../models/location';
+
+import { PlacesService } from '../../services/places';
 
 @IonicPage()
 @Component({
@@ -25,11 +28,23 @@ export class AddPlacePage {
   };
   isLocationSet = false;
 
+  imageUrl: string = '';
+  imageUrlAlt: string = '';
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private modalCrtl: ModalController,
               private loadingCrtl: LoadingController,
               private toastCrtl: ToastController,
-              private geolocation: Geolocation) {
+              private geolocation: Geolocation,
+              private camera: Camera,
+              private placesService: PlacesService) {
+  }
+
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
   }
 
   ionViewDidLoad() {
@@ -38,6 +53,23 @@ export class AddPlacePage {
 
   onCamera() {
     console.log('good picture');
+    // this will open our camera or 
+    this.camera.getPicture(this.options)
+      .then(imgData => {
+        console.log(imgData);
+        // option to allo little photo editing before save
+        imgData.allowEdit = true;
+
+        // img.Data.destinationType?? url dla zdjęcia
+        this.imageUrl = imgData;
+      })
+      .catch(err => {
+        const toast = this.toastCrtl.create({
+          message: 'Could not detect camera.',
+          duration: 2500
+        });
+        toast.present();
+      })
   }
 
   onGallery() {
@@ -89,7 +121,17 @@ export class AddPlacePage {
   }
 
   onSubmit(form: NgForm) {
-    console.log('pictire saved and shared');
+    console.log(form.value);
+    this.placesService
+      .addPlace(form.value.title, form.value.description, this.location, this.imageUrl);
+    
+    form.reset();
+    this.location = {
+      lat: 63.4187191,
+      lng: 10.3687234
+    };
+    this.imageUrl = '';
+    this.isLocationSet = false;
   }
 
 }

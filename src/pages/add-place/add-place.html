@@ -24,9 +24,9 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="imgUrl != ''">
         <ion-col>
-          <img [src]="" [alt]="">
+          <img [src]="imageUrl" [alt]="imageUrlAlt">
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -72,7 +72,7 @@
     </ion-grid>
 
     <button ion-button block outline type="submit" icon-left
-            [disabled]="!f.valid || !isLocationSet">
+            [disabled]="!f.valid || !isLocationSet || imgUrl == ''">
       <ion-icon name="share"></ion-icon>Let's share
     </button>
 

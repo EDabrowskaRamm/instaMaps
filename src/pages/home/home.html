@@ -20,19 +20,16 @@
   <p> {{ commentsLength }} comments</p>
   <button ion-button [navPush]="commentsPage" >Click to comment</button> -->
 
-  <div *ngFor="let item of myPlaces" >
+  <ion-card *ngFor="let item of myPlaces; let index = i" >
 
     <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/map.jpg" alt="avatar">
-      </ion-avatar>
-      <h2>Marty McFly</h2>
+      <h2> {{ item.title }} </h2>
     </ion-item>
 
-    <img [src]="item.img" alt="myPlace[i].img">
+    <img [src]="item.imageUrl" alt="item[i].imageUrl">
 
     <ion-card-content>
-      <p> {{ item.locDescription }} </p>
+      <p> {{ item.description }} </p>
     </ion-card-content>
 
     <ion-row>
@@ -49,12 +46,13 @@
         </button>
       </ion-col>
       <ion-col center text-center>
-        <ion-note>
-          11h ago
-        </ion-note>
+        <button ion-button icon-left clear small (click)="onMap(item)">
+          <ion-icon name="map" [isActive]="false"></ion-icon>
+          <!-- <div>location</div> -->
+        </button>
       </ion-col>
     </ion-row>
   
-  </div>
+  </ion-card>
 
 </ion-content>
