@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { File, Entry, FileError } from '@ionic-native/file';
 
 // import { AddGalleryPage } from '../add-gallery/add-gallery';
 // import { AddPicturePage } from '../add-picture/add-picture';
@@ -12,6 +13,8 @@ import { SetLocationPage } from '../set-location/set-location';
 import { Location } from '../../models/location';
 
 import { PlacesService } from '../../services/places';
+
+declare var cordova: any;
 
 @IonicPage()
 @Component({
@@ -37,6 +40,7 @@ export class AddPlacePage {
               private toastCrtl: ToastController,
               private geolocation: Geolocation,
               private camera: Camera,
+              private file: File,
               private placesService: PlacesService) {
   }
 
@@ -59,9 +63,36 @@ export class AddPlacePage {
         console.log(imgData);
         // option to allo little photo editing before save
         imgData.allowEdit = true;
+        
+        // identification of back/slashes so we can reach the end of the string(file name) and replace what's before it with ''
+        const currentName = imgData.replace(/^.*[\\\/]/,'');
+        // identify the file name and replace it with '' so we get the path
+        const path = imgData.replace(/[^\/]*$/, '');
+        //
+        const newFileName = new Date().getUTCMilliseconds() + '.jpg';
+
+        this.file.moveFile(path, currentName, cordova.file.dataDirectory, newFileName)
+          .then((res: Entry) => {
+            console.log(res);
+
+            // stores url of newly created img
+            this.imageUrl = res.nativeURL;
+            this.camera.cleanup();            
+          })
+          .catch((err: FileError) => {
+            console.log(err);
+            this.imageUrl = '';
+            const toast = this.toastCrtl.create({
+              message: 'Image couldn\'t be saved. Please try again.',
+              duration: 2500
+            });
+            toast.present();
+            this.camera.cleanup();
+          })
 
         // img.Data.destinationType?? url dla zdjęcia
         this.imageUrl = imgData;
+
       })
       .catch(err => {
         const toast = this.toastCrtl.create({

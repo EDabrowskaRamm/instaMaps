@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
 import { CommentsPage } from '../comments/comments';
@@ -11,7 +11,7 @@ import { PlacesService } from '../../services/places';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
   // img: string = '../../assets/imgs/map.jpg'
   // locDescription: string = 'Default location description'
   // likesCount: number = 0
@@ -29,6 +29,12 @@ export class HomePage {
     this.myPlaces = this.placesService.loadPlaces();
   }
 
+  ngOnInit() {
+    this.placesService.fetchPlaces()
+      .then((res: Place[]) => {
+        this.myPlaces = res;
+      })
+  }
 
   onFav(event) {
     console.log(event)

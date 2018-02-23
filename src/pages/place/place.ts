@@ -32,6 +32,7 @@ export class PlacePage {
   onDelete() {
     this.placesService.deletePlace(this.index);
     // this.onLeave(); nie wiem co to/ po za tym nie działa
+    this.viewCrtl.dismiss();
   }
 
 }
